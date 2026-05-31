@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги | ДизельМастер - Ремонт топливной аппаратуры грузовиков в Надыме</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Oswald:wght@600&display=swap">
+    <style>
+        /* Основные стили */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e74c3c;
+            --accent: #f39c12;
+            --light: #ecf0f1;
+            --dark: #1a252f;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: #f5f5f5;
+            background-image: url('https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            background-color: rgba(245, 245, 245, 0.9);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Шапка */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 15px 0;
+            background-color: rgba(44, 62, 80, 0.98);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .logo img {
+            height: 60px;
+            width: auto;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+        }
+        
+        .logo-text h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: white;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            color: var(--light);
+        }
+        
+        /* Навигация */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a.active {
+            color: var(--accent);
+        }
+        
+        nav a.active::after {
+            width: 100%;
+        }
+        
+        /* Заголовок страницы */
+        .page-header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            padding: 150px 0 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(44,62,80,0.8) 0%, rgba(231,76,60,0.6) 100%);
+            z-index: 0;
+        }
+        
+        .page-header h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+        }
+        
+        /* Услуги */
+        .services {
+            padding: 80px 0;
+            background-color: rgba(255,255,255,0.95);
+            backdrop-filter: blur(5px);
+            position: relative;
+        }
+        
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-item {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.5s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .service-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--accent);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+        
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .service-item:hover::before {
+            height: 100%;
+        }
+        
+        .service-item i {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-item:hover i {
+            color: white;
+            transform: rotate(15deg) scale(1.1);
+        }
+        
+        .service-item h3 {
+            font-family: 'Oswald', sans-serif;
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-item:hover h3 {
+            color: white;
+        }
+        
+        .service-item p {
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        .service-item:hover p {
+            color: white;
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: rgba(26, 37, 47, 0.95);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        footer p {
+            opacity: 0.8;
+        }
+        
+        /* Анимации */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .page-header {
+                padding: 120px 0 60px;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .service-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="fur.jpeg" alt="ДизельМастер">
+                <div class="logo-text">
+                    <h1>ДизельМастер</h1>
+                    <p>Ремонт топливной аппаратуры</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="services.html" class="active">Услуги</a></li>
+                    <li><a href="contact.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основное содержимое -->
+    <main>
+        <!-- Заголовок страницы -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Наши услуги</h1>
+            </div>
+        </section>
+
+        <!-- Список услуг -->
+        <section class="services">
+            <div class="container">
+                <div class="service-list">
+                    <div class="service-item">
+                        <i class="fas fa-search"></i>
+                        <h3>Диагностика топливной системы</h3>
+                        <p>Точная и быстрая диагностика для выявления проблем в топливной системе вашего грузовика.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-oil-can"></i>
+                        <h3>Ремонт ТНВД</h3>
+                        <p>Профессиональный ремонт топливных насосов высокого давления с использованием современного оборудования.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-syringe"></i>
+                        <h3>Ремонт форсунок</h3>
+                        <p>Восстановление и регулировка форсунок для оптимальной работы двигателя и снижения расхода топлива.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-filter"></i>
+                        <h3>Замена топливных фильтров</h3>
+                        <p>Своевременная замена фильтров для защиты топливной системы от загрязнений.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-cog"></i>
+                        <h3>Регулировка топливной аппаратуры</h3>
+                        <p>Точная регулировка всех компонентов топливной системы для максимальной производительности.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-soap"></i>
+                        <h3>Промывка топливной системы</h3>
+                        <p>Комплексная промывка топливной системы для удаления накопившихся загрязнений и отложений.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 ДизельМастер. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Анимация шапки при прокрутке
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Плавная прокрутка для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Анимация элементов при прокрутке
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.service-item');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Изначально скрываем элементы
+        const animatedElements = document.querySelectorAll('.service-item');
+        animatedElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll(); // Проверяем при загрузке
+        
+        // Параллакс эффект для фона
+        document.addEventListener('scroll', function() {
+            const scrollPosition = window.pageYOffset;
+            const backgroundPosition = scrollPosition * 0.3;
+            document.body.style.backgroundPositionY = `-${backgroundPosition}px`;
+        });
+    </script>
+</body>
+</html>
